@@ -1,3 +1,14 @@
+'''
+Software para criar tabelas de frequencia e gerar insights a partir de uma base de dados CSV.
+O programa analisa uma variavel quantitativa discreta (Anos) e uma variavel quantitativa continua (Cost),
+criando tabelas de frequencia, calculando medidas estatisticas e interpretando os resultados com insights claros.
+
+Desenvolvido por: 
+
+Mateus Felipe Curtale Serafim - RM: 571129
+Vinicius Sanches Chiarle - RM: 568846 
+
+'''
 from pathlib import Path
 import math
 import sys
