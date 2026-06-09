@@ -161,7 +161,7 @@ def preparar_dados_anos_cost(base):
 
 
 def criar_tabela_tendencia_ano(dados):
-    """Cria uma tabela de medias de preco por ano e variacao anterior."""
+    """Cria uma tabela de medias de preço por ano e variacao anterior."""
     tabela = (
         dados.groupby(VARIAVEL_DISCRETA)[VARIAVEL_CONTINUA]
         .agg(Media="mean", Mediana="median", Minimo="min", Maximo="max", Contagem="count")
@@ -229,9 +229,9 @@ def plotar_tendencia_ano(tabela_tendencia):
     plt.figure(figsize=(10, 5))
     plt.plot(anos, medias, marker="o", linestyle="-", label="Media")
     plt.plot(anos, medianas, marker="s", linestyle="--", label="Mediana")
-    plt.title("Tendencia de preco por ano")
+    plt.title("Tendencia de preço por ano")
     plt.xlabel("Ano")
-    plt.ylabel("Preco (Milhão USD)")
+    plt.ylabel("Preço (Milhão USD)")
     plt.grid(True, linestyle="--", alpha=0.5)
     plt.legend()
     plt.tight_layout()
@@ -320,7 +320,7 @@ def gerar_insights_discreta(tabela, dados, coluna):
         insight_moda = (
             f"# Insight 1: O valor mais frequente de '{coluna}' é "
             f"{valores_moda[0]:.0f}, presente em {maior_frequencia} registros "
-            f"({percentual_moda:.2f}% da base)."
+            f"({percentual_moda:.2f}% da base). Isso indica que a maioria dos registros ocorreu em torno de {valores_moda[0]:.0f}."
         )
     else:
         valores_formatados = ", ".join(f"{valor:.0f}" for valor in valores_moda)
@@ -405,7 +405,6 @@ def main():
 
     # Cria a tabela e os insights da variavel quantitativa discreta.
     tabela_discreta, dados_discretos = criar_tabela_discreta(base, VARIAVEL_DISCRETA)
-    estatistica_discreta = criar_tabela_estatistica_descritiva(dados_discretos)
     insights_discretos = gerar_insights_discreta(
         tabela_discreta,
         dados_discretos,
@@ -430,10 +429,6 @@ def main():
         f"Tabela de frequencia - variavel discreta: {VARIAVEL_DISCRETA}",
         tabela_discreta,
         insights_discretos,
-    )
-    imprimir_tabela(
-        f"Estatistica descritiva - variavel discreta: {VARIAVEL_DISCRETA}",
-        estatistica_discreta,
     )
     imprimir_resultado(
         f"Tabela de frequencia - variavel continua: {VARIAVEL_CONTINUA}",
